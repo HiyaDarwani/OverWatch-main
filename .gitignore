@@ -1,0 +1,132 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cookie
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+.ipython/
+
+# Environment variables & Sensitive Credentials
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.crt
+*.pfx
+secrets/
+config.secrets.json
+
+# Node & Frontend dependencies / build files (for Dashboard)
+node_modules/
+.next/
+.nuxt/
+out/
+.vuepress/
+.babelcache/
+.parcel-cache/
+.cache/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ML / AI Weights & Large Artifacts
+*.pth
+*.pt
+*.onnx
+*.tflite
+*.ckpt
+*.h5
+*.pb
+
+# OS & Editor generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Output directory & audio dumps
+outputs/
+temp/
+logs/
+*.log
+
+# TypeScript generated files
+tsconfig.tsbuildinfo
+
+# Runtime audio uploads
+backend/uploads/
+
+# Local test audio
+*.wav
+*.mp3
+
+backend/.venv-dfn/
+backend/.venv-fsn/
+.venv-fsn/
+checkpoints/best_model.tar
+best_model.tar
+backend/external/
