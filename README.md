@@ -91,7 +91,7 @@ powershell -ExecutionPolicy Bypass -File backend/setup_fullsubnet.ps1
 *Note on Checkpoint (`best_model.tar`)*:
 If the automated Google Drive download is blocked or rate-limited, download `best_model.tar` manually from the [official repository checkpoint link](https://drive.google.com/file/d/1UJSt1G0P_aXry-u79LLU_l9tCnNa2u7C/view) and place it into `FullSubNet-plus/checkpoints/best_model.tar`. OverWatch will automatically discover it.
 
-### 4. Running OverWatch
+### 4. Running OverWatch (Dashboard Mode)
 
 ```bash
 # Start FastAPI backend (Port 8000)
@@ -101,6 +101,70 @@ python -m uvicorn main:app --port 8000
 # In a separate terminal, start Next.js dashboard (Port 3000)
 npm run dev
 ```
+
+---
+
+## ⚡ Real-Time CLI Mode (Single Command)
+
+**New!** Run the entire OverWatch pipeline in one command — captures microphone, processes audio in real-time, plays enhanced output to speakers, and prints live telemetry.
+
+### Windows (One-Command Launch)
+```cmd
+run_realtime.bat
+```
+
+### Linux/macOS (One-Command Launch)
+```bash
+./run_realtime.sh
+```
+
+### Manual Python Launch
+```bash
+# Classical DSP only (Wiener Filter) - no models needed
+python realtime_cli.py
+
+# With DeepFilterNet3 (48kHz) - requires model download
+python realtime_cli.py --model deepfilternet --sr 48000
+
+# With FullSubNet+ (16kHz) - requires model download
+python realtime_cli.py --model fullsubnet --sr 16000
+
+# Spectral subtraction method
+python realtime_cli.py --method spectral_sub
+
+# List audio devices
+python realtime_cli.py --list-devices
+```
+
+### Real-Time CLI Options
+
+| Option | Values | Default | Description |
+|--------|--------|---------|-------------|
+| `--model` | `none`, `deepfilternet`, `fullsubnet` | `none` | Enhancement model |
+| `--sr` | `16000`, `48000` | `16000` | Sample rate (Hz) |
+| `--chunk` | integer | `1024` | Chunk size (samples) |
+| `--method` | `wiener`, `spectral_sub`, `mmse` | `wiener` | Classical DSP method |
+| `--list-devices` | flag | - | List audio devices |
+
+### What It Does
+
+1. **🎙️ Captures** microphone input in real-time chunks
+2. **⚡ Processes** through DSP pipeline (Wiener/Spectral Sub/MMSE) + optional ML model
+3. **🔊 Outputs** enhanced audio to speakers/headphones with near-zero latency
+4. **📊 Prints** live telemetry: latency, chunks processed, stage timings
+5. **⏹️** Press `Ctrl+C` to stop and see session summary
+
+### Model Setup for ML Enhancement
+
+```powershell
+# For DeepFilterNet3 (run from backend folder)
+powershell -ExecutionPolicy Bypass -File setup_deepfilter.ps1
+
+# For FullSubNet+ (run from backend folder)
+powershell -ExecutionPolicy Bypass -File setup_fullsubnet.ps1
+```
+
+Models will be downloaded to `models/` directory. The CLI auto-discovers them.
 
 ---
 
